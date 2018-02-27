@@ -36,6 +36,8 @@ function renderButtons() {
             var celeb = $("#celeb-input").val().trim();
             celebrities.push(celeb);
             renderButtons();
+            $("#celeb-input").val("");
+
 
 
         });
@@ -63,9 +65,10 @@ function displayInfo(celebrityName) {
         		var celebrityDiv = $("<div>");
         		var p = $("<p>").text("Rating:" + response.data[i].rating);
         		var celebrityImage = $("<img>");
-        		celebrityImage.attr("src", response.data[i].images.fixed_height.url);
-                celebrityDiv.prepend(p);
-        		celebrityDiv.append(celebrityImage);
+        		celebrityImage.attr("src", response.data[i].images.fixed_height_still.url);
+                celebrityDiv.append(p);
+               	celebrityDiv.prepend(celebrityImage);
+                
         		$(".imagesArea").append(celebrityDiv);
 
 
@@ -83,4 +86,4 @@ $(document).on('click', '#data-celebtrities-button', function() {
     displayInfo(x);
 })
 
-       
+       // http://api.giphy.com/v1/gifs/search?q=""&api_key=8BRi8Mur7x5UXHkxRh2ZfTVqOjpspRfl&limit=10
