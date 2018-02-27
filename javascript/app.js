@@ -9,23 +9,23 @@ $(function() {
 
 function renderButtons() {
 
-    // Deleting the buttons prior to adding new movies
+    // Deletethe buttons prior to adding new movies
     $("#button").empty();
 
     // Looping through the array of names
     for (var i = 0; i < celebrities.length; i++) {
 
-        // Then dynamically generating buttons for each name in the array
-        // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+        //  generate buttons for each name in the array
+        
         var a = $("<button>");
-        // Adding a class of movie to our button
+        // Adding a class of names to our button
         a.addClass("images");
         // Adding a data-attribute
         a.attr("data-name", celebrities[i]);
         a.attr("id", "data-celebtrities-button")
         // Providing the initial button text
         a.text(celebrities[i]);
-        // Adding the button to the buttons-view div
+        // Adding the button 
         $("#data-celebtrities").append(a);
     }
 }
@@ -36,11 +36,33 @@ function renderButtons() {
 
 function displayInfo(celebrityName) {
 
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + celebrityName + "&api_key=8BRi8Mur7x5UXHkxRh2ZfTVqOjpspRfl&limit=10";
-    $.ajax({ url: queryURL, method: "GET" })
+	var arrayCeleb = celebrityName.split("");
+    for(i = 0; i < arrayCeleb.length; i++) {
+        if(arrayCeleb[i] === " ") {
+            arrayCeleb[i] = '+';
+
+        }
+
+    }
+    var celebQuery = arrayCeleb.join("")
+    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + celebQuery + "&api_key=8BRi8Mur7x5UXHkxRh2ZfTVqOjpspRfl&limit=10";
+   console.log(queryURL);
+    $.ajax({url: queryURL, method: "GET" })
         .done(function(response) {
-            console.log(response);
-        });
+        	for(var i = 0; i < response.data.length; i++) {
+        		var celebrityDiv = $("<div>");
+        		var p = $("<p>").text("Rating:" + response.data[i].rating);
+        		var celebrityImage = $("<img>");
+        		celebrityImage.attr("src", response.data[i].images.fixed_height.url);
+                celebrityDiv.append(p);
+        		celebrityDiv.append(celebrityImage);
+        		$(".imagesArea").append(celebrityDiv);
+
+
+
+        	}
+
+           });
 }
 
 $(document).on('click', '#data-celebtrities-button', function() {
