@@ -9,8 +9,8 @@ $(function() {
 
 function renderButtons() {
 
-    // Deletethe buttons prior to adding new movies
-    $("#button").empty();
+    // Delete the buttons prior to adding new movies
+    $("#data-celebtrities").empty();
 
     // Looping through the array of names
     for (var i = 0; i < celebrities.length; i++) {
@@ -30,7 +30,17 @@ function renderButtons() {
     }
 }
 
+        $("#add-celeb").on("click", function(event){
+            event.preventDefault();
 
+            var celeb = $("#celeb-input").val().trim();
+            celebrities.push(celeb);
+            renderButtons();
+
+
+        });
+
+            // renderButtons();
 
 // // URL   https://giphy.com/categories/celebrities?api_key=8BRi8Mur7x5UXHkxRh2ZfTVqOjpspRfl
 
@@ -54,7 +64,7 @@ function displayInfo(celebrityName) {
         		var p = $("<p>").text("Rating:" + response.data[i].rating);
         		var celebrityImage = $("<img>");
         		celebrityImage.attr("src", response.data[i].images.fixed_height.url);
-                celebrityDiv.append(p);
+                celebrityDiv.prepend(p);
         		celebrityDiv.append(celebrityImage);
         		$(".imagesArea").append(celebrityDiv);
 
@@ -73,4 +83,4 @@ $(document).on('click', '#data-celebtrities-button', function() {
     displayInfo(x);
 })
 
-// // http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=YOUR_API_KEY
+       
