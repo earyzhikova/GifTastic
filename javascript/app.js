@@ -56,7 +56,7 @@ function displayInfo(celebrityName) {
 
     }
     var celebQuery = arrayCeleb.join("")
-    var queryURL = "http://api.giphy.com/v1/gifs/search?q=" + celebQuery + "&api_key=8BRi8Mur7x5UXHkxRh2ZfTVqOjpspRfl&limit=10";
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + celebQuery + "&api_key=8BRi8Mur7x5UXHkxRh2ZfTVqOjpspRfl&limit=10";
    console.log(queryURL);
     $.ajax({url: queryURL, method: "GET" })
         .then(function(response) {
