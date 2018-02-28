@@ -4,7 +4,7 @@ var celebrities = ["Bill Murray", "Adam Sandler", "Angelina Jolie", "Tom Hanks",
 //Page Ready Function
 $(function() {
     renderButtons();
-    console.log("page ready");
+    // console.log("page ready");
 });
 
 function renderButtons() {

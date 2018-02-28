@@ -5,3 +5,11 @@
 .inputArea {
 	float:right;
 }
+body {
+	background: grey;
+}
+
+.imagesArea .inputArea {
+	font-size: 18px;
+}
+
