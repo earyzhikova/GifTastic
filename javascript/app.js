@@ -9,7 +9,7 @@ $(function() {
 
 function renderButtons() {
 
-    // Delete the buttons prior to adding new movies
+    // Delete the buttons before adding new names
     $("#data-celebtrities").empty();
 
     // Loop through the array of names
@@ -18,7 +18,7 @@ function renderButtons() {
         //  generate buttons for each name in the array
         
         var a = $("<button>");
-        // Adding a class of names to our button
+        // Add a class to button
         a.addClass("images imageCelebButton");
         // Add a data-attribute
         a.attr("data-name", celebrities[i]);
@@ -94,7 +94,7 @@ $(document).on('click', '.imageCelebButton', function() {
    $(".imagesArea").on('click','img',function(){
         console.log("image click");
         var dataStill = $(this).attr("isStill");
-        //If is still then swap to animated
+        //If it is still then swap to animated
         if(dataStill === "true") {
             $(this).attr("src", $(this).attr("data-animate"));
             $(this).attr("isStill", false);
